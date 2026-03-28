@@ -69,13 +69,13 @@ Renewable penetration exceeds 1.0 in some hours (maximum 1.203), meaning renewab
 
 ### 3.1 total_renewables
 
-$$\text{total\_renewables}_t = \text{solar}_t + \text{wind\_onshore}_t + \text{wind\_offshore}_t$$
+$$\text{total\\_renewables}_t = \text{solar}_t + \text{wind\\_onshore}_t + \text{wind\\_offshore}_t$$
 
 Simple sum in MW. Used in EDA scatter plots to visualise the raw merit order relationship. Not used in the final regression — see Section 3.2.
 
 ### 3.2 renewable_penetration — Why This Instead of total_renewables
 
-$$\text{renewable\_penetration}_t = \frac{\text{total\_renewables}_t}{\text{grid\_load}_t}$$
+$$\text{renewable\\_penetration}_t = \frac{\text{total\\_renewables}_t}{\text{grid\\_load}_t}$$
 
 **The problem with simply summing up:** Germany's renewable capacity has grown substantially over 2018–2026. 20,000 MW of renewables in 2019 represents a very different market condition than 20,000 MW in 2024 — the grid has more capacity, storage has expanded, and interconnection has changed. Using raw MW conflates capacity growth over time with within-period merit order dynamics. The coefficient would be unstable across time.
 
@@ -93,13 +93,13 @@ $$\text{renewable\_penetration}_t = \frac{\text{total\_renewables}_t}{\text{grid
 
 ### 3.3 is_negative
 
-$$\text{is\_negative}_t = \mathbf{1}[\text{DAP}_t < 0]$$
+$$\text{is\\_negative}_t = \mathbf{1}[\text{DAP}_t < 0]$$
 
 Created as integer (0/1) rather than boolean because statsmodels' logit requires numeric input — boolean dtype causes a `ValueError`.
 
 ### 3.4 Crisis Period Definition
 
-$$\text{crisis\_dummy}_t = \mathbf{1}[2021\text{-}06\text{-}01 \leq t < 2023\text{-}01\text{-}01]$$
+$$\text{crisis\\_dummy}_t = \mathbf{1}[2021\text{-}06\text{-}01 \leq t < 2023\text{-}01\text{-}01]$$
 
 **Why June 2021 as start, not February 2022 (Russia-Ukraine invasion):**
 
